@@ -1,9 +1,11 @@
 import { Router } from 'express'
 import usuario from './usuario'
+import herramienta from './herramienta'
 
 const router = new Router()
 
 router.use('/usuarios', usuario)
+router.use('/herramientas', herramienta)
 
 /**
  * @apiDefine master Master access only

@@ -14,13 +14,14 @@ export const index = ({ querymen: { query, select, cursor, } }, res, next) =>{
   console.log("query ", query);
   console.log("select ", select);
   console.log("cursor ", cursor);
+  var pagina = cursor.skip + 1;
   Herramienta.count(query)
-      .then(count => Herramienta.find(query, select, cursor)
+      .then(count => Herramienta.find(query, select, cursor).populate("usuario", "email")
         .then((herramientas) => ({
           total:count,
           page:{
-            pageNumber:null, 
-            pageSize: null
+            pageNumber:pagina, 
+            pageSize: cursor.limit
           },
           rows: herramientas.map((herramienta) => herramienta.view())
         }))

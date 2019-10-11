@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-//import Usuario from '../usuario/model'
+import soft_delete from 'mongoose-softdelete'
 
 const herramientaSchema = new Schema({
   usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' , required: true},
@@ -36,6 +36,8 @@ herramientaSchema.methods = {
     } : view
   }
 }
+
+herramientaSchema.plugin(soft_delete);
 
 const model = mongoose.model('Herramienta', herramientaSchema)
 

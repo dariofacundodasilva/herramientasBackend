@@ -1,9 +1,9 @@
 import { success, notFound } from '../../services/response/'
-import { Herramienta } from '.'
+import { Domicilio } from '.'
 
 export const create = ({ bodymen: { body } }, res, next) =>{
   Herramienta.create(body)
-    .then((herramienta) => herramienta.view(true))
+    .then((domicilio) => domicilio.view(true))
     .then(success(res, 201))
     .catch(next)
 }
@@ -15,15 +15,15 @@ export const index = ({ querymen: { query, select, cursor, } }, res, next) =>{
   console.log("select ", select);
   console.log("cursor ", cursor);
   var pagina = cursor.skip + 1;
-  Herramienta.count(query)
-      .then(count => Herramienta.find(query, select, cursor).populate("usuario", "email")
-        .then((herramientas) => ({
+  Domicilio.count(query)
+      .then(count => Domicilio.find(query, select, cursor).populate("usuario", "email")
+        .then((domicilios) => ({
           total:count,
           page:{
             pageNumber:pagina, 
             pageSize: cursor.limit
           },
-          rows: herramientas.map((herramienta) => herramienta.view())
+          rows: domicilios.map((domicilio) => domicilio.view())
         }))
       )
       .then(success(res))
@@ -33,23 +33,23 @@ export const index = ({ querymen: { query, select, cursor, } }, res, next) =>{
 
 
 export const show = ({ params }, res, next) =>
-  Herramienta.findById(params.id)
+  Domicilio.findById(params.id)
     .then(notFound(res))
-    .then((herramienta) => herramienta ? herramienta.view() : null)
+    .then((domicilio) => domicilio ? domicilio.view() : null)
     .then(success(res))
     .catch(next)
 
 export const update = ({ bodymen: { body }, params }, res, next) =>
-  Herramienta.findById(params.id)
+  Domicilio.findById(params.id)
     .then(notFound(res))
-    .then((herramienta) => herramienta ? Object.assign(herramienta, body).save() : null)
-    .then((herramienta) => herramienta ? herramienta.view(true) : null)
+    .then((domicilio) => domicilio ? Object.assign(domicilio, body).save() : null)
+    .then((domicilio) => domicilio ? domicilio.view(true) : null)
     .then(success(res))
     .catch(next)
 
 export const destroy = ({ params }, res, next) =>
-  Herramienta.findById(params.id)
+  Domicilio.findById(params.id)
     .then(notFound(res))
-    .then((herramienta) => herramienta ? herramienta.softdelete() : null)
+    .then((domicilio) => domicilio ? domicilio.remove() : null)
     .then(success(res, 204))
     .catch(next)

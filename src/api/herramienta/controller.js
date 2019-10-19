@@ -16,7 +16,7 @@ export const index = ({ querymen: { query, select, cursor, } }, res, next) =>{
   console.log("cursor ", cursor);
   var pagina = cursor.skip + 1;
   Herramienta.count(query)
-      .then(count => Herramienta.find(query, select, cursor).populate("usuario", "email")
+      .then(count => Herramienta.find(query, select, cursor).populate("usuario")
         .then((herramientas) => ({
           total:count,
           page:{

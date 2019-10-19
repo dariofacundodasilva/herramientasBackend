@@ -10,7 +10,11 @@ const { usuario, nombre, descripcion, precio, disponible, imagenes } = schema.tr
 
 router.post('/', body({ usuario, nombre, descripcion, precio, disponible, imagenes }), create)
 
-router.get('/', query(), index)
+router.get('/', query({
+	nombreLike:{
+		type:String, paths: ['nombre'], operator: '$regex'
+	}
+}), index)
 
 router.get('/:id', show)
 

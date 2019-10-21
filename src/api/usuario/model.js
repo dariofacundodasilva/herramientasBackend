@@ -1,9 +1,11 @@
 import mongoose, { Schema } from 'mongoose'
 
 const usuarioSchema = new Schema({
-  email: {
-    type: String
-  }
+  email: { type: String , required : true},
+  accessToken: { type: String },
+  nombre: { type: String },
+  apellido: { type: String }
+
 }, {
   timestamps: true,
   toJSON: {
@@ -18,6 +20,9 @@ usuarioSchema.methods = {
       // simple view
       id: this.id,
       email: this.email,
+      accessToken: this.accessToken,
+      nombre: this.nombre,
+      apellido: this.apellido,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

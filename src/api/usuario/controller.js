@@ -2,10 +2,12 @@ import { success, notFound } from '../../services/response/'
 import { Usuario } from '.'
 
 export const create = ({ bodymen: { body } }, res, next) =>{
-  Usuario.create(body)
-    .then((usuario) => usuario.view(true))
-    .then(success(res, 201))
-    .catch(next)
+
+  Usuario.findOne({"email":body.email})
+      .then(usuario => usuario ? usuario.view() : Usuario.create(body).then((usuario) => usuario.view(true)) )
+      .then(success(res))
+      .catch(next)
+  
 }
   
 
@@ -20,8 +22,6 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
       )
       .then(success(res))
       .catch(next)
-
-      console.log("query ", query);
 }
   
 

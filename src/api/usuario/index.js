@@ -6,7 +6,7 @@ import { schema } from './model'
 export Usuario, { schema } from './model'
 
 const router = new Router()
-const { email } = schema.tree
+const { email, accessToken, nombre, apellido } = schema.tree
 
 /**
  * @api {post} /usuarios Create usuario
@@ -18,7 +18,7 @@ const { email } = schema.tree
  * @apiError 404 Usuario not found.
  */
 router.post('/',
-  body({ email }),
+  body({ email, accessToken, nombre, apellido }),
   create)
 
 /**
@@ -55,7 +55,7 @@ router.get('/:id',
  * @apiError 404 Usuario not found.
  */
 router.put('/:id',
-  body({ email }),
+  body({ email, accessToken, nombre, apellido }),
   update)
 
 /**

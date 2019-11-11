@@ -44,7 +44,7 @@
     "express": "^4.16.2",
     "jest-cli": "^20.0.4",
     "mongodb-memory-server": "^1.7.3",
-    "mongoose": "^5.1.0",
+    "mongoose": "^5.7.5",
     "mongoose-create-unique": "^0.4.4",
     "mongoose-keywords": "^0.4.0",
     "mongoose-softdelete": "^0.6.3",

@@ -6,20 +6,16 @@ import { schema } from './model'
 export Herramienta, { schema } from './model'
 
 const router = new Router()
-const { usuario, nombre, descripcion, precio, disponible, imagenes } = schema.tree
+const { usuario, nombre, descripcion, precio, disponible, imagenes , tipoHerramienta, reputacion} = schema.tree
 
-router.post('/', body({ usuario, nombre, descripcion, precio, disponible, imagenes }), create)
+router.post('/herramientas/', body({ usuario, nombre, descripcion, precio, disponible, imagenes , tipoHerramienta, reputacion}), create)
 
-router.get('/', query({
-	nombreLike:{
-		type:String, paths: ['nombre'], operator: '$regex'
-	}
-}), index)
+router.get('/herramientas/', query(), index)
 
-router.get('/:id', show)
+router.get('/herramientas/:id', show)
 
-router.put('/:id', body({ usuario, nombre, descripcion, precio, disponible, imagenes }), update)
+router.put('/herramientas/:id', body({  nombre, descripcion, precio, disponible, imagenes, tipoHerramienta , reputacion}), update)
 
-router.delete('/:id', destroy)
+router.delete('/herramientas/:id', destroy)
 
 export default router

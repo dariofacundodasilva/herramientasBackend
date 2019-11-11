@@ -1,15 +1,9 @@
 import mongoose, { Schema } from 'mongoose'
 
-const domicilioSchema = new Schema({
+const reputacionSchema = new Schema({
   usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' , required: true},
-  calle: { type: String , required: true},
-  nro: {type: String, required: true},
-  latitud: {type: Number},
-  longitud: {type:  Number},
-  zona:{
-    id:{type: Number},
-    nombre:{ type:String}
-  }
+  comentario: { type: String , required: true},
+  puntaje: {type: Number, min: 0, max: 5}
 }, {
   timestamps: true,
   toJSON: {
@@ -18,16 +12,13 @@ const domicilioSchema = new Schema({
   }
 })
 
-domicilioSchema.methods = {
+reputacionSchema.methods = {
   view (full) {
     const view = {
       id: this.id,
       usuario: this.usuario,
-      calle: this.calle,
-      nro: this.nro,
-      latitud: this.latitud,
-      longitud:this.longitud,
-      zona:this.zona,
+      comentario: this.comentario,
+      puntaje: this.puntaje,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
@@ -39,8 +30,7 @@ domicilioSchema.methods = {
   }
 }
 
-
-const model = mongoose.model('Domicilio', domicilioSchema)
+const model = mongoose.model('Reputacion', reputacionSchema)
 
 export const schema = model.schema
 export default model

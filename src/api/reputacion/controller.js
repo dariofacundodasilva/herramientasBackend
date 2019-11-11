@@ -1,5 +1,5 @@
 import { success, notFound } from '../../services/response/'
-import { Domicilio } from '.'
+import { Reputacion } from '.'
 import mongoose from 'mongoose';
 
 export const create = ({ bodymen: { body } , params}, res, next) =>{
@@ -15,7 +15,7 @@ export const index = ({ querymen: { query, select, cursor, }, params }, res, nex
   query.usuario= mongoose.Types.ObjectId(params.idUsuario);
   console.log("params",params);
   console.log("pepe",res.req.query);
-  evaluateQueryParamDomicilio(query, res.req.query);
+  evaluateQueryParam(query, res.req.query);
   console.log("query",query);
   var pagina = cursor.skip + 1;
   Domicilio.count(query)
@@ -60,7 +60,7 @@ export const destroy = ({ params }, res, next) =>
     .catch(next)
 
 
-var evaluateQueryParamDomicilio = function(query, queryParams){
+var evaluateQueryParam = function(query, queryParams){
   Object.keys(queryParams).forEach((key)=>{
     if( key == "calleLike"){
       query.calle = { $regex : new RegExp(queryParams[key], "i") }

@@ -1,14 +1,20 @@
 import mongoose, { Schema } from 'mongoose'
-import soft_delete from 'mongoose-softdelete'
 
 const herramientaSchema = new Schema({
   usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' , required: true},
   nombre: { type: String , required: true},
   descripcion: {type: String, required: true},
   precio: {type: Number, required: true},
-  disponible: {type:  Boolean, default: false},
-  imagenes:[{type:String}]
-}, {
+  disponible: {type: Number},
+  imagenes:[{type:String}],
+  tipoHerramienta: { type: Schema.Types.ObjectId, ref: 'TipoHerramienta' },
+  reputacion: [{
+    usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' , required: true},
+    comentario: { type: String },
+    puntaje: {type: Number, min: 0, max: 5}
+   }]
+  }, 
+  {
   timestamps: true,
   toJSON: {
     virtuals: true,
@@ -25,6 +31,8 @@ herramientaSchema.methods = {
       descripcion: this.descripcion,
       precio: this.precio,
       imagenes:this.imagenes,
+      tipoHerramienta:this.tipoHerramienta,
+      reputacion: this.reputacion,
       disponible: this.disponible,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
@@ -37,7 +45,6 @@ herramientaSchema.methods = {
   }
 }
 
-herramientaSchema.plugin(soft_delete);
 
 const model = mongoose.model('Herramienta', herramientaSchema)
 

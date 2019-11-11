@@ -6,16 +6,20 @@ import { schema } from './model'
 export Domicilio, { schema } from './model'
 
 const router = new Router()
-const { usuario, calle, nro, latitud, longitud } = schema.tree
+const { calle, nro, latitud, longitud, zona } = schema.tree
 
-router.post('/', body({ usuario, calle, nro, latitud, longitud }), create)
+router.post('/usuarios/:idUsuario/domicilios', body({ calle, nro, latitud, longitud, zona }), create)
 
-router.get('/', query(), index)
 
-router.get('/:id', show)
+router.get('/usuarios/:idUsuario/domicilios/', query(), index)
 
-router.put('/:id', body({ usuario, calle, nro, latitud, longitud }), update)
 
-router.delete('/:id', destroy)
+router.get('/usuarios/:idUsuario/domicilios/:id', show)
+
+router.put('/usuarios/:idUsuario/domicilios/:id', body({ calle, nro, latitud, longitud, zona }), update)
+
+router.delete('/usuarios/:idUsuario/domicilios/:id', destroy)
+
+
 
 export default router

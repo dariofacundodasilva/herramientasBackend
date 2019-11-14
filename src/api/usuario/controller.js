@@ -46,7 +46,7 @@ export const destroy = ({ params }, res, next) =>
     .catch(next);
 
 export const createReputacion = ({ bodymen: { body }, params }, res, next) =>{
-  Usuario.findOneAndUpdate({"_id":params.idUsuario},{$push: { reputacionAlquiler: body.reputacionAlquiler, reputacionVenta: body.reputacionVenta} })
+  Usuario.findOneAndUpdate({"_id":params.idUsuario},{$push: { reputacionProveedor: body.reputacionProveedor, reputacionUsuario: body.reputacionUsuario} })
     .then(notFound(res))
     .then((usuario) => usuario ? Usuario.findById(usuario._id) : null)
     .then((usuario) => usuario ? usuario.view(true) : null)
@@ -61,7 +61,7 @@ var bodyToUpdateUsuario= function(body){
   if(body.accessToken != null){bodyUpdate.accessToken = body.accessToken};
   if(body.nombre != null){bodyUpdate.nombre = body.nombre};
   if(body.apellido != null){bodyUpdate.apellido = body.apellido};
-  if(body.dni != null){bodyUpdate.accessToken = body.dni};
+  if(body.documento != null){bodyUpdate.documento = body.documento};
   if(body.telefonos != null){bodyUpdate.telefonos = body.telefonos};
 
   return bodyUpdate;

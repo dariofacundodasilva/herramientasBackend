@@ -66,11 +66,13 @@ export const destroy = ({ params }, res, next) =>
     var bodyUpdate={};
     
     if(body.nombre != null){bodyUpdate.nombre = body.nombre};
+    if(body.domicilio != null){bodyUpdate.domicilio = body.domicilio};
     if(body.descripcion != null){bodyUpdate.descripcion = body.descripcion};
     if(body.precio != null){bodyUpdate.precio = body.precio};
     if(body.disponible != null){bodyUpdate.disponible = body.disponible};
     if(body.imagenes != null){bodyUpdate.imagenes = body.imagenes};
     if(body.tipoHerramienta != null){bodyUpdate.tipoHerramienta = body.tipoHerramienta};
+    if(body.cantidad != null){bodyUpdate.cantidad = body.cantidad};
   
     return bodyUpdate;
   }

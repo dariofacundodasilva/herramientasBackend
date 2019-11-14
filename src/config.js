@@ -25,6 +25,7 @@ const config = {
     root: path.join(__dirname, '..'),
     port: process.env.PORT || 9000,
     ip: process.env.IP || '0.0.0.0',
+    fileHost: process.env.FILE_HOST || "pepe",
     apiRoot: process.env.API_ROOT || '',
     masterKey: requireProcessEnv('MASTER_KEY'),
     mongo: {

@@ -6,6 +6,7 @@ const domicilioSchema = new Schema({
   nro: {type: String, required: true},
   latitud: {type: Number},
   longitud: {type:  Number},
+  codPostal: {type: Number},
   zona:{
     id:{type: Number},
     nombre:{ type:String}
@@ -28,6 +29,7 @@ domicilioSchema.methods = {
       latitud: this.latitud,
       longitud:this.longitud,
       zona:this.zona,
+      codPostal: this.codPostal,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

@@ -6,15 +6,15 @@ import { schema } from './model'
 export Herramienta, { schema } from './model'
 
 const router = new Router()
-const { usuario, nombre, descripcion, precio, disponible, imagenes , tipoHerramienta, reputacion} = schema.tree
+const { usuario, domicilio, nombre, descripcion, precio, disponible, imagenes , tipoHerramienta, reputacion, cantidad} = schema.tree
 
-router.post('/herramientas/', body({ usuario, nombre, descripcion, precio, disponible, imagenes , tipoHerramienta, reputacion}), create)
+router.post('/herramientas/', body({ usuario, domicilio, nombre, descripcion, precio, disponible, imagenes , tipoHerramienta, reputacion, cantidad}), create)
 
 router.get('/herramientas/', query(), index)
 
 router.get('/herramientas/:id', show)
 
-router.put('/herramientas/:id', body({  nombre, descripcion, precio, disponible, imagenes, tipoHerramienta , reputacion}), update)
+router.put('/herramientas/:id', body({  nombre,domicilio, descripcion, precio, disponible, imagenes, tipoHerramienta , reputacion, cantidad}), update)
 
 router.delete('/herramientas/:id', destroy)
 

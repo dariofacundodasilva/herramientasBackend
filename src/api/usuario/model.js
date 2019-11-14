@@ -5,20 +5,17 @@ const usuarioSchema = new Schema({
   accessToken: { type: String },
   nombre: { type: String },
   apellido: { type: String },
-  dni:{
-    tipo: {type: Number},
-    numero:{type:Number}
-  },
+  documento:{type:Number},
   telefonos:[{
     tipo: {type: Number},
     numero:{type:Number}
   }],
-  reputacionVenta: [{
+  reputacionProveedor: [{
     usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' , required: true},
     comentario: { type: String },
     puntaje: {type: Number, min: 0, max: 5}
    }],
-  reputacionAlquiler: [{ 
+  reputacionUsuario: [{ 
     usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' , required: true},
     comentario: { type: String },
     puntaje: {type: Number, min: 0, max: 5}
@@ -40,12 +37,12 @@ usuarioSchema.methods = {
       accessToken: this.accessToken,
       nombre: this.nombre,
       apellido: this.apellido,
-      dni: this.dni,
+      documento: this.documento,
       telefonos: this.telefonos,
-      reputacionVenta: this.reputacionVenta,
-      promedioVenta:calcularPromedioReputacion(this.reputacionVenta),
-      reputacionAlquiler: this.reputacionAlquiler,
-      promedioAlquiler:calcularPromedioReputacion(this.reputacionAlquiler),
+      reputacionProveedor: this.reputacionProveedor,
+      promedioProveedor:calcularPromedioReputacion(this.reputacionProveedor),
+      reputacionUsuario: this.reputacionUsuario,
+      promedioUsuario:calcularPromedioReputacion(this.reputacionUsuario),
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

@@ -6,11 +6,8 @@ const domicilioSchema = new Schema({
   nro: {type: String, required: true},
   latitud: {type: Number},
   longitud: {type:  Number},
-  codPostal: {type: Number},
-  zona:{
-    id:{type: Number},
-    nombre:{ type:String}
-  }
+  codPostal: {type: String, required:true},
+  zona:{type:String}
 }, {
   timestamps: true,
   toJSON: {

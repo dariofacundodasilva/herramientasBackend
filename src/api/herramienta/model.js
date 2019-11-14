@@ -2,7 +2,12 @@ import mongoose, { Schema } from 'mongoose'
 
 const herramientaSchema = new Schema({
   usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' , required: true},
-  domicilio: { type: Schema.Types.ObjectId, ref: 'Domicilio' , required: true},
+  domicilio: { 
+    calle: {type: String},
+    nro:   {type: String},
+    zona:  {type: String},
+    codPostal: {type: String}
+  },
   nombre: { type: String , required: true},
   descripcion: {type: String, required: true},
   precio: {type: Number, required: true},
@@ -36,6 +41,7 @@ herramientaSchema.methods = {
       cantidad: this.cantidad,
       tipoHerramienta:this.tipoHerramienta,
       reputacion: this.reputacion,
+      domicilio:this.domicilio,
       disponible: this.disponible,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt

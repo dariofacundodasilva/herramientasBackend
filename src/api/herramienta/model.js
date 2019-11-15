@@ -41,6 +41,7 @@ herramientaSchema.methods = {
       cantidad: this.cantidad,
       tipoHerramienta:this.tipoHerramienta,
       reputacion: this.reputacion,
+      promedio:calcularPromedio(this.reputacion),
       domicilio:this.domicilio,
       disponible: this.disponible,
       createdAt: this.createdAt,
@@ -52,6 +53,18 @@ herramientaSchema.methods = {
       // add properties for a full view
     } : view
   }
+}
+
+var calcularPromedio= function(reputacion){
+  var promedio= 0;
+  if(reputacion && reputacion.length > 0){
+    reputacion.map((rep)=>{
+      promedio = promedio + rep.puntaje;
+    });
+    promedio = promedio / reputacion.length;
+  }
+  
+  return promedio;
 }
 
 

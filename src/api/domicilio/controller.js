@@ -58,12 +58,12 @@ export const destroy = ({ params }, res, next) =>
 
 var evaluateQueryParamDomicilio = function(query, queryParams){
   Object.keys(queryParams).forEach((key)=>{
-    if( key == "calleLike"){
-      query.calle = { $regex : new RegExp(queryParams[key], "i") }
+      if( key == "calleLike"){
+        query.calle = { $regex : new RegExp(queryParams[key], "i") }
+      }
     }
-  }
-);
-
+  );
+}
 
 var bodyToUpdateDomicilio= function(body){
   var bodyUpdate={};
@@ -74,6 +74,4 @@ var bodyToUpdateDomicilio= function(body){
   if(body.zona != null){bodyUpdate.zona = body.zona};
   if(body.codPostal != null){bodyUpdate.codPostal = body.codPostal};
   return bodyUpdate;
-}
-  
 }

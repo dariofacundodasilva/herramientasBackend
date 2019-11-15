@@ -59,6 +59,10 @@ export const destroy = ({ params }, res, next) =>
       if( key == "nombreLike"){
         query.nombre = { $regex : new RegExp(queryParams[key], "i") }
       }
+
+      if( key == "usuario"){
+        query.usuario = queryParams[key];
+      }
     }
   )}
 

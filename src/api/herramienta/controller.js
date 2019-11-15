@@ -53,6 +53,15 @@ export const destroy = ({ params }, res, next) =>
     .catch(next)
 
 
+export const createReputacion = ({ bodymen: { body }, params }, res, next) =>{
+    Herramienta.findOneAndUpdate({"_id":params.id},{$push: { reputacion: body.reputacion} })
+      .then(notFound(res))
+      .then((herramienta) => herramienta ? Herramienta.findById(herramienta._id) : null)
+      .then((herramienta) => herramienta ? herramienta.view(true) : null)
+      .then(success(res))
+      .catch(next)
+  }
+
 
   var evaluateQueryParamHerramienta = function(query, queryParams){
     Object.keys(queryParams).forEach((key)=>{

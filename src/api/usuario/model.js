@@ -5,7 +5,10 @@ const usuarioSchema = new Schema({
   accessToken: { type: String },
   nombre: { type: String },
   apellido: { type: String },
-  documento:{type:Number},
+  documento:{
+    tipo: {type: Number},
+    numero:{type:String}
+  },
   telefonos:[{
     tipo: {type: Number},
     numero:{type:Number}
@@ -27,6 +30,8 @@ const usuarioSchema = new Schema({
     transform: (obj, ret) => { delete ret._id }
   }
 })
+
+//usuarioSchema.index({documento: 1}, {unique: true});
 
 usuarioSchema.methods = {
   view (full) {

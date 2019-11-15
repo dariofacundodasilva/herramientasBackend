@@ -31,7 +31,7 @@ export const index = ({ querymen: { query, select, cursor, } }, res, next) =>{
 
 
 export const show = ({ params }, res, next) =>
-  Herramienta.findById(params.id)
+  Herramienta.findById(params.id).populate("usuario").populate("tipoHerramienta")
     .then(notFound(res))
     .then((herramienta) => herramienta ? herramienta.view() : null)
     .then(success(res))

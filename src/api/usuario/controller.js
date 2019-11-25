@@ -4,7 +4,9 @@ import { Usuario } from '.'
 export const create = ({ bodymen: { body } }, res, next) =>{
 
   Usuario.findOne({"email":body.email})
-      .then(usuario => usuario ? usuario.view() : Usuario.create(body).then((usuario) => usuario.view(true)) )
+      .then(usuario => usuario ? 
+        Usuario.findOneAndUpdate({"_id":usuario.id},{$set: bodyToUpdateUsuario(body) }).then((usuario) => usuario ? Usuario.findById(usuario._id) : null).then((usuario) => usuario.view(true)) 
+        : Usuario.create(body).then((usuario) => usuario.view(true)) )
       .then(success(res))
       .catch(next)
   

@@ -41,6 +41,8 @@ usuarioSchema.methods = {
       id: this.id,
       email: this.email,
       nombre: this.nombre,
+      accessToken:this.accessToken,
+      fcmToken:this.fcmToken,
       apellido: this.apellido,
       documento: this.documento,
       telefonos: this.telefonos,

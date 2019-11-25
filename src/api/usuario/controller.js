@@ -58,6 +58,7 @@ export const createReputacion = ({ bodymen: { body }, params }, res, next) =>{
 var bodyToUpdateUsuario= function(body){
   var bodyUpdate={};
   
+  if(body.fcmToken != null){bodyUpdate.fcmToken = body.fcmToken};
   if(body.accessToken != null){bodyUpdate.accessToken = body.accessToken};
   if(body.nombre != null){bodyUpdate.nombre = body.nombre};
   if(body.apellido != null){bodyUpdate.apellido = body.apellido};

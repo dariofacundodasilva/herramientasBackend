@@ -1,8 +1,9 @@
 import mongoose, { Schema } from 'mongoose'
 
 const alquilerSchema = new Schema({
-  usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' , required: true},
+  cliente: { type: Schema.Types.ObjectId, ref: 'Usuario' , required: true},
   herramienta: { type: Schema.Types.ObjectId, ref: 'Herramienta' , required: true},
+  proveedor: { type: Schema.Types.ObjectId, ref: 'Usuario' , required: true},
   monto: {type: Number},
   dias: {type:  Number},
   cantidad:{type:Number},
@@ -19,8 +20,9 @@ alquilerSchema.methods = {
   view (full) {
     const view = {
       id: this.id,
-      usuario: this.usuario,
+      cliente: this.cliente,
       herramienta: this.herramienta,
+      proveedor: this.proveedor,
       monto: this.monto,
       cantidad:this.cantidad,
       dias: this.dias,

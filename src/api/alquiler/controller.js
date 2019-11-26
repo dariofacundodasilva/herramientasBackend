@@ -57,11 +57,14 @@ Alquiler.findById(params.id)
 
 var evaluateQueryParamAlquiler = function(query, queryParams){
   Object.keys(queryParams).forEach((key)=>{
-      if( key == "usuario"){
-        query.usuario = queryParams[key];
+      if( key == "cliente"){
+        query.cliente = queryParams[key];
       }
       if( key == "herramienta"){
         query.herramienta = queryParams[key];
+      }
+      if( key == "proveedor"){
+        query.proveedor = queryParams[key];
       }
     }
   );

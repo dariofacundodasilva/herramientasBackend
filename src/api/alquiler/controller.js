@@ -1,11 +1,29 @@
 import { success, notFound } from '../../services/response/'
 import { Alquiler } from '.'
+import { Herramienta } from '../herramienta/.'
 import mongoose from 'mongoose';
+import { sendNotification } from '../../services/fcm/'
 
 export const create = ({ bodymen: { body } , params}, res, next) =>{
   Alquiler.create(body)
     .then((alquiler) => alquiler.view(true))
     .then(success(res, 201))
+    .then((alquiler)=>{
+      Herramienta.findById(body.herramienta).populate("usuario")
+      .then( (herramienta) => {
+        if(herramienta.usuario.fcmToken){
+
+          sendNotification({
+            to:herramienta.usuario.fcmToken,
+            notification : {
+              body : "Alquien quiere solitar tus herramientas: "+ herramienta.nombre,
+              title: "Nueva solicitud de Alquiler"
+            },
+            show_notification:"true"
+          });
+        }
+      })
+    })
     .catch(next)
 }
 

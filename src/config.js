@@ -28,6 +28,7 @@ const config = {
     fileHost: process.env.FILE_HOST || "http://www.mercadolibre.com.ar/sell/picture/upload?siteId=MLA",
     apiRoot: process.env.API_ROOT || '',
     masterKey: requireProcessEnv('MASTER_KEY'),
+    fcmAuthorization: process.env.FCM_AUTHORIZATION || "key=AAAAlxTWuGY:APA91bF-S-JMqFIBTJ-lWCqAeItUN9K2MocS-jGN52RWZUNe2LPtB7Jx-xCscm9_QA0XnQLvOPN_gYGq2jTuEg6lkwOtjllYIklrWJQ0ROYriXGgoyENDDip9klyJP7zAHmhyj_8rCh6",
     mongo: {
       options: {
         db: {

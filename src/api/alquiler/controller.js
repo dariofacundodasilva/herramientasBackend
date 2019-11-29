@@ -34,7 +34,7 @@ export const index = ({ querymen: { query, select, cursor }, params }, res, next
   Alquiler.count(query)
       .then(
         count => Alquiler.find(query, select, cursor)
-          .populate("usuario").populate("herramienta")
+          .populate("cliente").populate("herramienta").populate("proveedor")
           .then((alquileres) => (alquileres.map((alquiler) => alquiler.view())))
 
       )
@@ -46,7 +46,7 @@ export const index = ({ querymen: { query, select, cursor }, params }, res, next
 
 
 export const show = ({ params }, res, next) =>{
-  Alquiler.findById(params.id).populate("usuario").populate("heramienta")
+  Alquiler.findById(params.id).populate("cliente").populate("heramienta").populate("proveedor")
     .then(notFound(res))
     .then((alquiler) => alquiler ? alquiler.view() : null)
     .then(success(res))

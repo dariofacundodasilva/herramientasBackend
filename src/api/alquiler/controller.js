@@ -84,6 +84,18 @@ var evaluateQueryParamAlquiler = function(query, queryParams){
       if( key == "proveedor"){
         query.proveedor = queryParams[key];
       }
+      if( key == "estado"){
+        query.estado = queryParams[key];
+      }
+      if( key == "pendiente"){
+        query.estado = 1;
+      }
+      if( key == "enCurso"){
+        query.estado = 2;
+      }
+      if( key == "finalizado"){
+        query.estado = { $in: [3,4,5,6 ] }
+      }
     }
   );
 }

@@ -7,7 +7,7 @@ const alquilerSchema = new Schema({
   monto: {type: Number},
   dias: {type:  Number},
   cantidad:{type:Number},
-  estado:{type:  Number}
+  estado:{type:  Number, default: 1 }
 }, {
   timestamps: true,
   toJSON: {
